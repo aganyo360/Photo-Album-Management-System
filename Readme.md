@@ -19,7 +19,7 @@ The Photo Album Management System is a web-based application developed using the
 - **Security**: Security features have been implemented to protect user data and ensure a secure environment.
 
 ## Installation
-    VS code
+   pip install -r requirements.txt
 
 ### Prerequisites
 
