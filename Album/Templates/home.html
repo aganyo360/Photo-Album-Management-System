@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+#gallery{
+  margin-top: 1%;
+}
+.username{
+  color: #27a776;
+  text-transform: capitalize;
+}
+h3{
+  text-align: center;
+}
+article{
+  border: 1px solid #fafafa;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+@media(max-width:991px) {
+  #gallery{
+  margin-top: 15%;
+}
+}
+
+@media(max-width:768px) {
+  #gallery{
+  margin-top: 18%;
+}
+}
+
+@media(max-width: 450px) {
+  .text-center h2{
+    font-size: 1.2rem;
+  }
+  .text-center p{
+    font-size: 1rem;
+  }
+  #gallery{
+  margin-top: 1%;
+}
+article{
+  padding: .5rem; 
+}
+}
+
+</style>
+<section id="hero" class="hero d-flex flex-column justify-content-center align-items-center" data-aos="fade" data-aos-delay="1500">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 text-center">
+        <h2>Welcome to<span>Photo album</span>Capture, Create And Cherish Your Memories.</h2>
+        <p><br>Seamlessly upload and organize your photos, design stunning albums with ease, and relive your moments anytime, anywhere. Start Building Beautiful Albums Today</p>
+        <a class="btn-get-started" href="{%url 'user_albums' user.username %}">View Albums</a>
+      </div>
+    </div>
+  </div>
+</section><!-- End Hero Section -->
+
+<section id="gallery" class="gallery">
+  <h3>Users</h3>
+      {% for user in users %}
+          <p><span class="username">{{ user.username }}</span> , Has {{ user.album_set.count }} Albums</p>
+      {% endfor %}
+  </div>
+  </div>
+</section><!-- End Gallery Section -->
+    {%if is_paginated %}
+        {%if page_obj.has_previous%}
+          <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+          <a class="btn btn-outline-info mb-4" href="?page={{page_obj.previous_page_number}}">Previous</a>
+        {%endif%}
+      
+        {% if page_obj.has_next%}
+          <a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number}}">Next</a>
+          <a class="btn btn-outline-info mb-4" href="?page={{page_obj.paginator.num_pages}}">Last</a>
+        {%endif%}
+    {%endif%}
+
+
+
+    <div id="preloader">
+      <div class="line"></div>
+    </div>          
+
+{% endblock content %}

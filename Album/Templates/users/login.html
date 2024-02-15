@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    label{
+        display: none;
+    }
+    button a{
+        text-decoration: none;
+        color: #fafafa;
+    }
+    button a:hover{
+        color: #fafafa;
+    }
+</style>
+<div class="login-page">
+     <div class="form" id="form">
+        <div id="create-account" class="login_container">
+            <!-- <h1>Sign Up below</h1> -->
+            <form method="post" autocomplete="off">
+                {% csrf_token %}
+              
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Log in</legend>
+                    {{form|crispy}}
+                </fieldset>
+                <button id="Register_btn" type="submit">Sign In</button>
+                <small >
+                    <a  class="reset" href="{% url 'password_reset' %}">Forgot Password</a>
+                </small>
+                <center><div class="border-top pt-3">
+                    <small>
+                        Need an Account? <a id="forward_btn" class="ml-2" href="{%url 'register'%}">Sign up Now</a>
+                    </small>
+                </div></center>
+            </form>
+            <button class="btn btn-outline-info">
+                <a href="{% provider_login_url 'google'%}?next=/">
+                    <i class="fab fa-google"></i>
+                    Login with Google
+                </a>
+            </button>
+        </div>
+    </div>
+</div>   
+ {%endblock content%}
